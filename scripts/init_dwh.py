@@ -6,7 +6,7 @@ from config.db_config import DB_CONFIG
 
 SQL_BASE_DIR = "sql"
 DDL_DIR = os.path.join(SQL_BASE_DIR, "ddl")
-DML_DIR = os.path.join(SQL_BASE_DIR, "dml")
+#DML_DIR = os.path.join(SQL_BASE_DIR, "dml")
 
 
 def create_database():
@@ -85,7 +85,7 @@ def execute_sql_from_directory(conn, directory_path, label):
 
 def execute_sql_scripts():
     """
-    Последовательно выполняет  скрипты по созданию и заполнению таблиц в хранилище данных
+    Последовательно выполняет  скрипты по созданию таблиц в хранилище данных
     """
     print(" Подключение к целевой базе данных...")
 
@@ -93,7 +93,6 @@ def execute_sql_scripts():
         conn = psycopg2.connect(**DB_CONFIG)
 
         execute_sql_from_directory(conn, DDL_DIR, "DDL-скриптов (создание структуры)")
-        execute_sql_from_directory(conn, DML_DIR, "DML-скриптов (загрузка данных)")
 
         conn.close()
 
